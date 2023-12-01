@@ -2,28 +2,28 @@ import { ThemeProvider } from '@emotion/react';
 
 const theme = {
     colors: {
-        white: '',
+        white: '#fff',
         attention: '',
-        focus: '',
+        focus: '#B009FF',
         primary: {
             a: '#5754ED',
-            b: '',
+            b: '#D93114',
             c: ''
         },
         secondary: {
-            a: '#EBEAF9',
+            a: '#F8F8FD',
             b: '',
             c: ''
         },
         neutral: {
-            a: '',
+            a: '#373737',
             b: '',
             c: '',
             d: ''
         },
         dark: {
             a: '',
-            b: ''
+            b: '#B61B00'
         }
     },
     spacing: {
