@@ -1,4 +1,4 @@
-import { ThemeProvider } from '@emotion/react'
+import { ThemeProvider } from '@emotion/react';
 
 const theme = {
     colors: {
@@ -27,14 +27,15 @@ const theme = {
         }
     },
     spacing: {
-       s : '16px',
-       l : '32px',
+        xs: '8px',
+        s: '16px',
+        l: '32px',
     },
     fontFamily: "'Montserrat', sans serif"
 }
 
 export const ProviderTheme = ({ children }) => {
     return <ThemeProvider theme={theme}>
-        { children }
+        {children}
     </ThemeProvider>
 }

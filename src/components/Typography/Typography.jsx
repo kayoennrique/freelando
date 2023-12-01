@@ -1,4 +1,4 @@
-import styled from "@emotion/styled"
+import styled from "@emotion/styled";
 
 const components = {
     h1: 'h1',
