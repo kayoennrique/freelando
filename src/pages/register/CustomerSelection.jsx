@@ -6,8 +6,10 @@ import { Link as RouterLink } from 'react-router-dom';
 
 import client from './assets/client.png';
 import freelancer from './assets/freela.png';
+import { useRegistrationUserContext } from "../../context/UserRegistration";
 
 const CustomerSelection = () => {
+    const { setProfile } = useRegistrationUserContext();
     return (
         <div style={{ textAlign: 'center' }}>
             <Typography variant="h1" component="h1">
@@ -18,7 +20,7 @@ const CustomerSelection = () => {
             </Typography>
             <Row>
                 <Col md={6} sm={12}>
-                    <RouterLink to='interesses' >
+                    <RouterLink to='interesses' onClick={() => setProfile('cliente')} >
                         <img src={client} alt="" />
                         <Typography variant="body" component="body">
                             Sou cliente e preciso de um freela!

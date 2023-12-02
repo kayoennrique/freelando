@@ -2,8 +2,9 @@ import { Col, Row } from "react-grid-system";
 import { Typography } from "../../components/Typography/Typography";
 import GroupRadio from "../../components/Radio/GroupRadio";
 import { Button } from "../../components/Button/Button";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useRegistrationUserContext } from "../../context/UserRegistration";
+import { useEffect } from "react";
 
 const options = [
     {
@@ -34,20 +35,38 @@ const options = [
 
 const Interests = () => {
 
-    const [option, setOption] = useState('');
+    const { 
+        user, 
+        setInterest, 
+        canSelectInterest 
+    } = useRegistrationUserContext();
 
-    return (<div style={{ textAlign: 'center' }}>
-        <Typography variant="h1" component="h1">
-            Crie seu cadastro
-        </Typography>
-        <Typography variant='h3' component='h2'>
-            Qual a área de interesse?
-        </Typography>
-        <GroupRadio options={options} value={option} onChange={setOption} />
+    const toBrowse = useNavigate();
+
+    useEffect(() => {
+        if (!canSelectInterest()) {
+            toBrowse('/cadastro')
+        }
+    }, [toBrowse, canSelectInterest]);
+
+    return (<>
+        <div style={{ textAlign: 'center' }}>
+            <Typography variant="h1" component="h1">
+                Crie seu cadastro
+            </Typography>
+            <Typography variant='h3' component='h2'>
+                Qual a área de interesse?
+            </Typography>
+        </div>
+        <GroupRadio 
+            options={options} 
+            value={user.interest} 
+            onChange={setInterest} 
+        />
         <Row>
             <Col lg={6} md={6} sm={6}>
                 <Link to="/cadastro">
-                    <Button variant="secondary">
+                    <Button variant="secundaria">
                         Anterior
                     </Button>
                 </Link>
@@ -62,7 +81,7 @@ const Interests = () => {
                 </div>
             </Col>
         </Row>
-    </div>)
+    </>)
 }
 
 export default Interests;

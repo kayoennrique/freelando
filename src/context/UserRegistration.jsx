@@ -1,4 +1,5 @@
-import { createContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const homeUser = {
     profile: '',
@@ -13,6 +14,7 @@ const homeUser = {
 
 export const RegistrationUserContext = createContext({
     user: homeUser,
+    errors: {},
     setProfile: () => null,
     setInterest: () => null,
     setFullName: () => null,
@@ -21,15 +23,19 @@ export const RegistrationUserContext = createContext({
     setEmail: () => null,
     setPassword: () => null,
     setPasswordConfirmed: () => null,
-});
+    submitUser: () => null,
+    canSelectInterest: () => null
+})
 
 export const useRegistrationUserContext = () => {
-    return useState(RegistrationUserContext);
+    return useContext(RegistrationUserContext);
 }
 
 export const RegistrationUserProvider = ({ children }) => {
 
-    const [user, setUser] = useState(homeUser);
+    const toBrowse = useNavigate();
+
+    const [user, setUser] = useState(homeUser)
 
     const setProfile = (profile) => {
         setUser(previousState => {
@@ -37,7 +43,7 @@ export const RegistrationUserProvider = ({ children }) => {
                 ...previousState,
                 profile
             }
-        });
+        })
     }
     const setInterest = (interest) => {
         setUser(previousState => {
@@ -45,7 +51,7 @@ export const RegistrationUserProvider = ({ children }) => {
                 ...previousState,
                 interest
             }
-        });
+        })
     }
     const setFullName = (fullName) => {
         setUser(previousState => {
@@ -53,7 +59,7 @@ export const RegistrationUserProvider = ({ children }) => {
                 ...previousState,
                 fullName
             }
-        });
+        })
     }
     const setUf = (uf) => {
         setUser(previousState => {
@@ -61,7 +67,7 @@ export const RegistrationUserProvider = ({ children }) => {
                 ...previousState,
                 uf
             }
-        });
+        })
     }
     const setCity = (city) => {
         setUser(previousState => {
@@ -69,7 +75,7 @@ export const RegistrationUserProvider = ({ children }) => {
                 ...previousState,
                 city
             }
-        });
+        })
     }
     const setEmail = (email) => {
         setUser(previousState => {
@@ -77,7 +83,7 @@ export const RegistrationUserProvider = ({ children }) => {
                 ...previousState,
                 email
             }
-        });
+        })
     }
     const setPassword = (password) => {
         setUser(previousState => {
@@ -85,7 +91,7 @@ export const RegistrationUserProvider = ({ children }) => {
                 ...previousState,
                 password
             }
-        });
+        })
     }
     const setPasswordConfirmed = (passwordConfirmed) => {
         setUser(previousState => {
@@ -93,7 +99,20 @@ export const RegistrationUserProvider = ({ children }) => {
                 ...previousState,
                 passwordConfirmed
             }
-        });
+        })
+    }
+
+    const submitUser = () => {
+        if (user.password.length < 8) {
+
+            return
+        }
+        console.log(user)
+        toBrowse('/cadastro/concluido')
+    }
+
+    const canSelectInterest = () => {
+        return !!user.profile
     }
 
     const context = {
@@ -106,10 +125,11 @@ export const RegistrationUserProvider = ({ children }) => {
         setEmail,
         setPassword,
         setPasswordConfirmed,
+        submitUser,
+        canSelectInterest
     }
 
     return (<RegistrationUserContext.Provider value={context}>
         {children}
-    </RegistrationUserContext.Provider>
-    );
+    </RegistrationUserContext.Provider>)
 }

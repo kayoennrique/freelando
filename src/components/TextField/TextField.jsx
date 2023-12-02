@@ -23,11 +23,17 @@ const InputStylized = styled.input`
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
-`
+`;
 
-export const TextField = ({ title }) => {
-    return (<LabelStylized>
-        {title}
-        <InputStylized />
-    </LabelStylized>);
+export const TextField = ({ title, value, onChange, type = 'text' }) => {
+    return (
+        <LabelStylized>
+            {title}
+            <InputStylized
+                value={value}
+                onChange={e => onChange(e.target.value)}
+                type={type}
+            />
+        </LabelStylized>
+    );
 }

@@ -38,11 +38,10 @@ const StylizedButton = styled.button`
     }
 `;
 
-export const DropDown = ({ title, options }) => {
+export const DropDown = ({ title, options, value, onChange }) => {
     const [itsOpen, toggleVisibility] = useState(false);
 
     const [optionFocused, setOptionFocused] = useState(null);
-    const [optionSelected, setOptionSelected] = useState(null);
 
     const manipulateKeyboard = (e) => {
         toggleVisibility(true)
@@ -72,7 +71,7 @@ export const DropDown = ({ title, options }) => {
                 e.preventDefault();
                 setOptionFocused(null)
                 toggleVisibility(false)
-                setOptionSelected(options[optionFocused])
+                onChange(options[optionFocused])
                 break;
             case 'Tab':
                 setOptionFocused(null)
@@ -89,27 +88,28 @@ export const DropDown = ({ title, options }) => {
     }
 
     return (<LabelStylized>
-        {title}
-        <StylizedButton
-            itsOpen={itsOpen}
-            onClick={() => toggleVisibility(!itsOpen)}
-            onKeyDown={manipulateKeyboard}
-        >
-            <div>
-                {optionSelected ? optionSelected.text : 'Selecione'}
-            </div>
-            <div>
-                <span>{itsOpen ? '▲' : '▼'}</span>
-            </div>
-        </StylizedButton>
-        {itsOpen && <StylizedDropList>
-            {options.map((option, index) => <ItemListDrunkStylized
-                key={option.value}
-                focusActive={index === optionFocused}
-                onClick={() => setOptionSelected(option)}
+            {title}
+            <StylizedButton
+                itsOpen={itsOpen}
+                onClick={() => toggleVisibility(!itsOpen)}
+                onKeyDown={manipulateKeyboard}
+                type='button'
             >
-                {option.text}
-            </ItemListDrunkStylized>)}
-        </StylizedDropList>}
-    </LabelStylized>);
+                <div>
+                    {value ? value.text : 'Selecione'}
+                </div>
+                <div>
+                    <span>{itsOpen ? '▲' : '▼'}</span>
+                </div>
+            </StylizedButton>
+            {itsOpen && <StylizedDropList>
+                {options.map((option, index) => <ItemListDrunkStylized
+                    key={option.value}
+                    focusActive={index === optionFocused}
+                    onClick={() => onChange(option)}
+                >
+                    {option.text}
+                </ItemListDrunkStylized>)}
+            </StylizedDropList>}
+        </LabelStylized>);
 }
