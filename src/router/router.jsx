@@ -1,9 +1,10 @@
 import { createBrowserRouter } from "react-router-dom"
+import HomePage from "../pages/HomePage";
 
 export const router = createBrowserRouter([
     {
         path: "/",
-        element: <h1>Freelando</h1>,
+        element: <HomePage />,
         children: [],
     },
 ]);
