@@ -1,5 +1,4 @@
-import { createBrowserRouter } from "react-router-dom"
-import HomePage from "../pages/HomePage";
+import { createBrowserRouter } from "react-router-dom";
 import CustomerSelection from "../pages/register/CustomerSelection";
 import LayoutBaseRegistration from "../pages/register/LayoutBaseRegistration";
 import LayoutBase from "../pages/LayouBase";
@@ -18,7 +17,7 @@ export const router = createBrowserRouter([
                         element: <CustomerSelection />
                     },
                     {
-                        path: 'cliente',
+                        path: 'interesses',
                         element: <h1> Interesses</h1>
                     },
                     {
