@@ -12,7 +12,7 @@ import { IconWhatsApp } from "../components/Icons/IconWhatsApp";
 import { IconTwitch } from "../components/Icons/IconTwitch";
 import { Outlet } from "react-router-dom";
 
-const LayoutBase = () => {
+const LayoutBase = ({ children }) => {
     return (
         <>
             <Header>
@@ -28,6 +28,7 @@ const LayoutBase = () => {
                 </Container>
             </Header>
             <Outlet />
+            {children}
             <Footer>
                 <Container>
                     <Row align="center">

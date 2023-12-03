@@ -6,6 +6,7 @@ import LayoutBaseRegistration from "../pages/register/LayoutBaseRegistration";
 import CustomerSelection from "../pages/register/CustomerSelection";
 import LayoutBase from "../pages/LayoutBase";
 import HomePage from "../pages/HomePage/HomePage";
+import NotFound404 from "../pages/errors/NotFound404";
 
 export const router = createBrowserRouter([
     {
@@ -14,6 +15,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: "",
+                ErrorBoundary: NotFound404,
                 element: <HomePage />
             },
             {
