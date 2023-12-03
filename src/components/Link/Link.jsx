@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-const LinkPrimary = styled.a`
+const LinkPrimary = styled.span`
     cursor: pointer;
     font-weight: 400;
     font-size: 20px;
@@ -11,7 +11,7 @@ const LinkPrimary = styled.a`
         color: ${props => props.theme.colors.dark.a};
     }
 `;
-const LinkSecondary = styled.a`
+const LinkSecondary = styled.span`
     cursor: pointer;
     font-weight: 400;
     font-size: 16px;

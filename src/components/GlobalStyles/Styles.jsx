@@ -7,6 +7,9 @@ const styles = theme => {
         },
         body: {
             margin: 0
+        },
+        a: {
+            textDecoration: 'none'
         }
     }
 }

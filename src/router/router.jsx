@@ -7,6 +7,7 @@ import CustomerSelection from "../pages/register/CustomerSelection";
 import LayoutBase from "../pages/LayoutBase";
 import HomePage from "../pages/HomePage/HomePage";
 import NotFound404 from "../pages/errors/NotFound404";
+import Login from "../pages/Login/Login";
 
 export const router = createBrowserRouter([
     {
@@ -19,7 +20,11 @@ export const router = createBrowserRouter([
                 element: <HomePage />
             },
             {
-                path:'cadastro',
+                path: "login",
+                element: <Login />
+            },
+            {
+                path: 'cadastro',
                 element: <LayoutBaseRegistration />,
                 children: [
                     {
