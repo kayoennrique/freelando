@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
 
+
 const LabelStylized = styled.label`
     display: flex;
     align-items: center;
     font-size: 16px;
     margin-left: ${props => props.theme.spacing.xs};
-    margin-bottom: ${props => props.theme.spacing.m};
     cursor: pointer;
     padding: ${props => props.theme.spacing.xs};
     &:hover {

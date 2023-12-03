@@ -27,9 +27,7 @@ const LayoutBase = () => {
                     </Row>
                 </Container>
             </Header>
-            <Container>
-                <Outlet />
-            </Container>
+            <Outlet />
             <Footer>
                 <Container>
                     <Row align="center">
@@ -68,5 +66,4 @@ const LayoutBase = () => {
         </>
     )
 }
-
 export default LayoutBase;

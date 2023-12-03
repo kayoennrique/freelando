@@ -1,10 +1,11 @@
-import { createBrowserRouter } from "react-router-dom";
-import CustomerSelection from "../pages/register/CustomerSelection";
-import LayoutBaseRegistration from "../pages/register/LayoutBaseRegistration";
-import LayoutBase from "../pages/LayouBase";
-import Interests from "../pages/register/Interests";
-import PersonalData from "../pages/register/PersonalData";
+import { createBrowserRouter } from "react-router-dom"
 import Concluded from "../pages/register/Concluded";
+import PersonalData from "../pages/register/PersonalData";
+import Interests from "../pages/register/Interests";
+import LayoutBaseRegistration from "../pages/register/LayoutBaseRegistration";
+import CustomerSelection from "../pages/register/CustomerSelection";
+import LayoutBase from "../pages/LayoutBase";
+import HomePage from "../pages/HomePage/HomePage";
 
 export const router = createBrowserRouter([
     {
@@ -12,7 +13,11 @@ export const router = createBrowserRouter([
         element: <LayoutBase />,
         children: [
             {
-                path: 'cadastro',
+                path: "",
+                element: <HomePage />
+            },
+            {
+                path:'cadastro',
                 element: <LayoutBaseRegistration />,
                 children: [
                     {

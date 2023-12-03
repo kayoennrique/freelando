@@ -8,17 +8,17 @@ const theme = {
         primary: {
             a: '#5754ED',
             b: '#D93114',
-            c: ''
+            c: '#168070'
         },
         secondary: {
             a: '#F8F8FD',
-            b: '',
-            c: ''
+            b: '#FDF8F8',
+            c: '#EBFCF9'
         },
         neutral: {
             a: '#373737',
             b: '',
-            c: '',
+            c: '#F5F5F5',
             d: ''
         },
         dark: {
@@ -28,8 +28,10 @@ const theme = {
     },
     spacing: {
         xs: '8px',
-        s: '16px',
-        l: '32px',
+        s : '16px',
+        m : '24px',
+        l : '32px',
+        xl: '48px'
     },
     fontFamily: "'Montserrat', sans serif"
 }
