@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { createContext, useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -103,12 +104,13 @@ export const RegistrationUserProvider = ({ children }) => {
     }
 
     const submitUser = () => {
-        if (user.password.length < 8) {
-
-            return
-        }
-        console.log(user)
-        toBrowse('/cadastro/concluido')
+        axios.post('http://localhost:8080/auth/register', user)
+            .then(() => {
+                toBrowse('/cadastro/concluido')
+            })
+            .catch(erro => {
+                console.error(erro)
+            })
     }
 
     const canSelectInterest = () => {
