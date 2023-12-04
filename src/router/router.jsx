@@ -8,15 +8,16 @@ import LayoutBase from "../pages/LayoutBase";
 import HomePage from "../pages/HomePage/HomePage";
 import NotFound404 from "../pages/errors/NotFound404";
 import Login from "../pages/Login/Login";
+import Profile from "../pages/Profile/Profile";
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <LayoutBase />,
+        ErrorBoundary: NotFound404,
         children: [
             {
                 path: "",
-                ErrorBoundary: NotFound404,
                 element: <HomePage />
             },
             {
@@ -24,7 +25,16 @@ export const router = createBrowserRouter([
                 element: <Login />
             },
             {
-                path: 'cadastro',
+                path: "area-logada",
+                children: [
+                    {
+                        path: 'perfil',
+                        element: <Profile />
+                    }
+                ]
+            },
+            {
+                path:'cadastro',
                 element: <LayoutBaseRegistration />,
                 children: [
                     {
