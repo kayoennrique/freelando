@@ -29,7 +29,7 @@ const ImgStylized = styled.img`
 const Profile = () => {
 
     useEffect(() => {
-        http.get('perfil')
+        http.get('profile')
             .then(response => console.log(response.data))
             .catch(erro => console.error(erro))
     }, [])
