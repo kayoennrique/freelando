@@ -8,19 +8,24 @@ import { Card } from "../../components/Card/Card";
 import { Link } from "../../components/Link/Link";
 import { Typography } from "../../components/Typography/Typography";
 import { Logo } from "./Logo";
+import { useUserSessionContext } from "../../context/UserSession";
 
-const FormStylized  = styled.form`
+const FormStylized = styled.form`
     border-bottom: 1px solid;
     border-color: ${props => props.theme.colors.primary.a};
     padding-bottom: ${props => props.theme.spacing.l};
 `;
 
 const Login = () => {
+    
     const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [password, setPassword] = useState('');
+
+    const { login } = useUserSessionContext();
 
     const tryLogin = async (e) => {
-
+        e.preventDefault();
+        login(email, password);
     }
 
     return (<Container>
@@ -40,13 +45,13 @@ const Login = () => {
                             title="E-mail:"
                             value={email}
                             onChange={setEmail}
-                            tyoe="email"
+                            type="email"
                         />
                         <TextField
                             title="Senha:"
                             value={password}
                             onChange={setPassword}
-                            tyoe="password"
+                            type="password"
                         />
                         <div style={{ textAlign: 'right' }}>
                             <RouterLink to="">
@@ -76,7 +81,7 @@ const Login = () => {
                 </Card>
             </Col>
         </Row>
-    </Container>)
+    </Container>);
 }
 
 export default Login;

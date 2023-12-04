@@ -1,6 +1,6 @@
-import axios from 'axios';
 import { createContext, useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import http from '../http';
 
 const homeUser = {
     profile: '',
@@ -104,7 +104,7 @@ export const RegistrationUserProvider = ({ children }) => {
     }
 
     const submitUser = () => {
-        axios.post('http://localhost:8080/auth/register', user)
+        http.post('/auth/register', user)
             .then(() => {
                 toBrowse('/cadastro/concluido')
             })
