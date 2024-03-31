@@ -5,7 +5,6 @@ At this moment, it is an MVP that is just beginning and still has many new featu
 
 <img src="screencapture.png" alt="Imagem do Freelando" width="50%">
 
-
 ## 🔨 Project features
 
 At this first moment, we have the page that was designed as the development team's first delivery.
@@ -17,13 +16,10 @@ O [Figma of this application you can find here](https://www.figma.com/file/DGIzb
 Check out this list of everything we will use in this project:
 
 - `React`
-- `Create React App`
-- `Emotion`
-- `React Grid System`
-- `Keyboard Events`
-- `GitHub`
-- `Trello`
-- `Figma`
+- `Formik Library`
+- `Formik, Form, Formik and ErrorMessage Component`
+- `Hook useFormikContext()`
+- `Regex expressions`
 
 And much more!
 

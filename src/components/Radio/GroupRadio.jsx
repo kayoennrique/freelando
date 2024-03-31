@@ -1,6 +1,6 @@
 import Radio from "./Radio";
 
-const GrupoRadio = ({ options, value, onChange }) => {
+const GroupRadio = ({ options, value, onChange }) => {
   return (
     <div>
       {options.map((option) => (
@@ -16,4 +16,4 @@ const GrupoRadio = ({ options, value, onChange }) => {
   );
 };
 
-export default GrupoRadio;
+export default GroupRadio;
