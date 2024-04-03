@@ -49,8 +49,41 @@ const PersonalData = () => {
         password: "",
         confirmPassword: "",
       }}
+      validate={(values) => {
+        const errors = {};
+        if (!values.name) {
+          errors.name = "Campo obrigatório";
+        }
+        if (!values.state) {
+          errors.state = "Campo obrigatório";
+        }
+        if (!values.city) {
+          errors.city = "Campo obrigatório";
+        }
+        if (!values.password) {
+          errors.password = "Campo obrigatório";
+        }
+        if (!values.telephone) {
+          errors.telephone = "Campo obrigatório";
+        } else if (!/^\d{11}$/i.test(values.telephone)) {
+          errors.telephone = "Número de telefone inválido";
+        }
+        if (!values.email) {
+          errors.email = "Campo obrigatório";
+        } else if (
+          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+        ) {
+          errors.email = "Email inválido";
+        }
+        if (!values.confirmPassword) {
+          errors.confirmPassword = "Campo obrigatório";
+        } else if (values.password != values.confirmPassword) {
+          errors.confirmPassword = "As senhas não conferem";
+        }
+        return errors;
+      }}
     >
-      {(formik) => {
+      {(formik) => (
         <Form onSubmit={formik.handleSubmit}>
           <div style={{ textAlign: "center" }}>
             <Typography variant="h1" component="h1">
@@ -120,8 +153,8 @@ const PersonalData = () => {
               </div>
             </Col>
           </Row>
-        </Form>;
-      }}
+        </Form>
+      )}
     </Formik>
   );
 };
