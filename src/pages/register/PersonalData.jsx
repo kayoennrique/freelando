@@ -1,11 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { Col, Row } from "react-grid-system";
+import { Form, Formik } from "formik";
 import { Typography } from "../../components/Typography/Typography";
 import { TextField } from "../../components/TextField/TextField";
 import { DropDown } from "../../components/DropDown/DropDown";
-import { Col, Row } from "react-grid-system";
 import { Button } from "../../components/Button/Button";
-import { Link } from "react-router-dom";
-import { Formik } from "formik";
 
 const brazilianStates = [
   { text: "Acre", value: "AC" },
@@ -51,7 +51,7 @@ const PersonalData = () => {
       }}
     >
       {(formik) => {
-        <form>
+        <Form onSubmit={formik.handleSubmit}>
           <div style={{ textAlign: "center" }}>
             <Typography variant="h1" component="h1">
               Crie seu cadastro
@@ -64,54 +64,25 @@ const PersonalData = () => {
           </div>
           <Row>
             <Col>
-              <TextField
-                title="Nome completo"
-                value={formik.values.name}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                type="text"
-                required
-              />
+              <TextField title="Nome completo" name="name" type="text" />
             </Col>
           </Row>
           <Row>
             <Col lg={4} md={4} sm={4}>
-              <DropDown
-                title="Estado"
-                options={brazilianStates}
-                value={formik.values.state}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
+              <DropDown title="Estado" options={brazilianStates} />
             </Col>
             <Col lg={8} md={8} sm={8}>
-              <TextField
-                title="Cidade"
-                value={formik.values.city}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                type="text"
-                required
-              />
+              <TextField title="Cidade" name="city" type="text" required />
             </Col>
           </Row>
           <Row>
             <Col lg={6} md={6} sm={6}>
-              <TextField
-                title="E-mail"
-                value={formik.values.email}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                type="email"
-                required
-              />
+              <TextField title="E-mail" name="email" type="email" required />
             </Col>
             <Col lg={6} md={6} sm={6}>
               <TextField
                 title="Telefone"
-                value={formik.values.telephone}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
+                name="telephone"
                 type="tel"
                 required
               />
@@ -121,9 +92,7 @@ const PersonalData = () => {
             <Col lg={6} md={6} sm={6}>
               <TextField
                 title="Senha"
-                value={formik.values.password}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
+                name="password"
                 type="password"
                 required
               />
@@ -131,9 +100,7 @@ const PersonalData = () => {
             <Col lg={6} md={6} sm={6}>
               <TextField
                 title="Confirme sua senha"
-                value={formik.values.confirmPassword}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
+                name="confirmPassword"
                 type="password"
                 required
               />
@@ -153,7 +120,7 @@ const PersonalData = () => {
               </div>
             </Col>
           </Row>
-        </form>;
+        </Form>;
       }}
     </Formik>
   );
