@@ -3,7 +3,6 @@ import GroupRadio from "../../components/Radio/GroupRadio";
 import { Button } from "../../components/Button/Button";
 import { Col, Row } from "react-grid-system";
 import { Form, Link } from "react-router-dom";
-import { useState } from "react";
 import { Formik } from "formik";
 
 const options = [
@@ -34,8 +33,6 @@ const options = [
 ];
 
 const Interests = () => {
-  const [interests, setInterests] = useState("");
-
   return (
     <>
       <div style={{ textAlign: "center" }}>
@@ -52,11 +49,7 @@ const Interests = () => {
         }}
       >
         <Form>
-          <GroupRadio
-            options={options}
-            value={interests}
-            onChange={setInterests}
-          />
+          <GroupRadio options={options} />
         </Form>
       </Formik>
       <Row>
