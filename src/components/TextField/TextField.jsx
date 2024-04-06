@@ -32,9 +32,9 @@ export const TextField = ({ title, ...props }) => {
       {title}
       <InputStylized {...props} />
       <ErrorMessage name={props.name}>
-        {(messages) => {
-          <div style={{ color: "red", marginTop: "4x" }}>{messages}</div>;
-        }}
+        {(messages) => (
+          <div style={{ color: "red", marginTop: "4x" }}>{messages}</div>
+        )}
       </ErrorMessage>
     </LabelStylized>
   );
