@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 import { ItemListDrunkStylized } from "./ItemListDrunkStylized";
 import { StylizedDropList } from "./StylizedDropList";
+import { useFormikContext } from "formik";
 
 const LabelStylized = styled.label`
   display: block;
@@ -37,9 +38,9 @@ const StylizedButton = styled.button`
   }
 `;
 
-export const DropDown = ({ title, options, value, onChange }) => {
+export const DropDown = ({ title, options }) => {
   const [itsOpen, toggleVisibility] = useState(false);
-
+  const { setFieldValue, values } = useFormikContext();
   const [focusedOption, setFocusedOption] = useState(null);
 
   const manipulateKeyboard = (e) => {
@@ -95,7 +96,7 @@ export const DropDown = ({ title, options, value, onChange }) => {
         onKeyDown={manipulateKeyboard}
         type="button"
       >
-        <div>{value ? value.text : "Selecione"}</div>
+        <div>{values.state ? values.state : "Selecione"}</div>
         <div>
           <span>{itsOpen ? "▲" : "▼"}</span>
         </div>
@@ -106,7 +107,7 @@ export const DropDown = ({ title, options, value, onChange }) => {
             <ItemListDrunkStylized
               key={option.value}
               focusActive={index === focusedOption}
-              onClick={() => onChange(option)}
+              onClick={() => setFieldValue("state", option.text)}
             >
               {option.text}
             </ItemListDrunkStylized>

@@ -83,7 +83,7 @@ const PersonalData = () => {
         return errors;
       }}
     >
-      {(formik) => (
+      {formik => (
         <Form onSubmit={formik.handleSubmit}>
           <div style={{ textAlign: "center" }}>
             <Typography variant="h1" component="h1">
