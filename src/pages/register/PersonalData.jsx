@@ -5,8 +5,8 @@ import { Typography } from "../../components/Typography/Typography";
 import { TextField } from "../../components/TextField/TextField";
 import { DropDown } from "../../components/DropDown/DropDown";
 import { Button } from "../../components/Button/Button";
-import { Form, Formik } from "formik";
-import * as Yup from 'yup';
+import { Field, Form, Formik } from "formik";
+import * as Yup from "yup";
 
 const brazilianStates = [
   { text: "Acre", value: "AC" },
@@ -38,7 +38,44 @@ const brazilianStates = [
   { text: "Tocantins", value: "TO" },
 ];
 
-const validationSchema = Yup.object().shape({});
+const formatPhone = (worth) => {
+  if (!value) return;
+
+  const telephone = worth.replace(/\D/g, "");
+
+  return `(${telephone.slice(0, 2)}) ${telephone.slice(2, 7)}-${telephone.slice(
+    7
+  )}`;
+};
+
+const schema = Yup.object().shape({
+  name: Yup.string()
+    .trim()
+    .lowercase()
+    .required("Campo obrigatório")
+    .min(2, "Digite seu nome completo"),
+  city: Yup.string()
+    .required("Campo obrigatório")
+    .max(58, "Digite uma cidade válida"),
+  state: Yup.string().required("Campo obrigatório"),
+  email: Yup.string()
+    .required("Campo obrigatório")
+    .email("Digite um e-mail válido"),
+  telephone: Yup.string()
+    .required("Campo obrigatório")
+    .matches(/^\d{11}$/, "Número de telefone inválido")
+    .transform(formatPhone),
+  password: Yup.string().required("Campo obrigatório"),
+  confirmPassword: Yup.string()
+    .required("Campo obrigatório")
+    .oneOf([Yup.ref("password"), null], "As senhas não conferem"),
+  terms: Yup.boolean()
+    .required("Campo obrigatório")
+    .oneOf([true], "Você deve aceitar os termos"),
+  birth: Yup.date()
+    .required("Campo obrigatório")
+    .max(new Date(), "Digite uma data válida"),
+});
 
 const PersonalData = () => {
   return (
@@ -52,44 +89,12 @@ const PersonalData = () => {
         password: "",
         confirmPassword: "",
       }}
-      validate={(values) => {
-        const errors = {};
-        if (!values.name) {
-          errors.name = "Campo obrigatório";
-        }
-        if (!values.state) {
-          errors.state = "Campo obrigatório";
-        }
-        if (!values.city) {
-          errors.city = "Campo obrigatório";
-        }
-        if (!values.password) {
-          errors.password = "Campo obrigatório";
-        }
-        if (!values.telephone) {
-          errors.telephone = "Campo obrigatório";
-        } else if (!/^\d{11}$/i.test(values.telephone)) {
-          errors.telephone = "Número de telefone inválido";
-        }
-        if (!values.email) {
-          errors.email = "Campo obrigatório";
-        } else if (
-          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-        ) {
-          errors.email = "Email inválido";
-        }
-        if (!values.confirmPassword) {
-          errors.confirmPassword = "Campo obrigatório";
-        } else if (values.password != values.confirmPassword) {
-          errors.confirmPassword = "As senhas não conferem";
-        }
-        return errors;
-      }}
+      validationSchema={schema}
       onSubmit={(values) => {
-        console.log('Dados do formulário', values);
+        console.log("Dados do formulário", values);
       }}
     >
-      {formik => (
+      {(formik) => (
         <Form onSubmit={formik.handleSubmit}>
           <div style={{ textAlign: "center" }}>
             <Typography variant="h1" component="h1">
@@ -104,6 +109,9 @@ const PersonalData = () => {
           <Row>
             <Col>
               <TextField title="Nome completo" name="name" type="text" />
+            </Col>
+            <Col>
+              <TextField title="Data de nascimento" name="birth" type="date" />
             </Col>
           </Row>
           <Row>
@@ -145,6 +153,17 @@ const PersonalData = () => {
               />
             </Col>
           </Row>
+          <Row>
+            <label>
+              <Field type="checkbox" name="terms" />
+              Aceito os termos e condições
+            </label>
+          </Row>
+          {formik.errors.terms ? (
+            <div style={{ color: "red", marginTop: "4px" }}>
+              {formik.errors.terms}
+            </div>
+          ) : null}
           <Row>
             <Col lg={6} md={6} sm={6}>
               <Link to="/cadastro/interesses">
