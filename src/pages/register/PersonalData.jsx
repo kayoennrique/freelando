@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Col, Row } from "react-grid-system";
-import { Form, Formik } from "formik";
 import { Typography } from "../../components/Typography/Typography";
 import { TextField } from "../../components/TextField/TextField";
 import { DropDown } from "../../components/DropDown/DropDown";
 import { Button } from "../../components/Button/Button";
+import { Form, Formik } from "formik";
+import * as Yup from 'yup';
 
 const brazilianStates = [
   { text: "Acre", value: "AC" },
@@ -36,6 +37,8 @@ const brazilianStates = [
   { text: "Sergipe", value: "SE" },
   { text: "Tocantins", value: "TO" },
 ];
+
+const validationSchema = Yup.object().shape({});
 
 const PersonalData = () => {
   return (
