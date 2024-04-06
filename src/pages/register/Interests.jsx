@@ -2,8 +2,9 @@ import { Typography } from "../../components/Typography/Typography";
 import GroupRadio from "../../components/Radio/GroupRadio";
 import { Button } from "../../components/Button/Button";
 import { Col, Row } from "react-grid-system";
-import { Link } from "react-router-dom";
+import { Form, Link } from "react-router-dom";
 import { useState } from "react";
+import { Formik } from "formik";
 
 const options = [
   {
@@ -45,7 +46,19 @@ const Interests = () => {
           Qual a área de interesse?
         </Typography>
       </div>
-      <GroupRadio options={options} value={interests} onChange={setInterests} />
+      <Formik
+        initialValues={{
+          interests: "",
+        }}
+      >
+        <Form>
+          <GroupRadio
+            options={options}
+            value={interests}
+            onChange={setInterests}
+          />
+        </Form>
+      </Formik>
       <Row>
         <Col lg={6} md={6} sm={6}>
           <Link to="/cadastro">
